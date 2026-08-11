@@ -122,3 +122,66 @@
 - Split the cleaned data into training and testing sets.
 - Train the first machine-learning model.
 - Evaluate the model against the baseline.
+
+
+## Day 4
+
+**Time Spent:** ~2 hours
+
+### Tasks Completed
+
+- Loaded the cleaned training dataset.
+- Examined the target variable `completed_course`.
+- Established a majority-class baseline.
+- The baseline predicts every learner as a non-completer and achieves approximately 62.75% accuracy.
+- Defined the features available by the end of Week 3.
+- Excluded `learner_id`, `final_score`, `certificate_issued`, and `notes` from the model because they are either identifiers, post-program information, or have uncertain timing.
+- Split the dataset into 80% training data and 20% testing data using stratification.
+- Built a preprocessing pipeline using:
+  - `StandardScaler` for numerical features.
+  - `OneHotEncoder` for categorical features.
+- Trained the first Logistic Regression classification model.
+- Evaluated the model using accuracy, precision, recall, F1-score, confusion matrix, and ROC-AUC.
+
+### Results
+
+| Metric | Result |
+|---|---:|
+| Majority-class baseline accuracy | 62.75% |
+| Logistic Regression accuracy | 78.50% |
+| ROC-AUC | 0.871 |
+| Non-completer recall | 87% |
+| Completer recall | 65% |
+
+### Confusion Matrix
+
+The model correctly classified:
+
+- 261 non-completers.
+- 115 completers.
+
+It incorrectly classified:
+
+- 40 non-completers as completers.
+- 63 completers as non-completers.
+
+### Observations
+
+The Logistic Regression model substantially outperformed the majority-class baseline, improving accuracy by approximately 15.75 percentage points.
+
+The ROC-AUC of 0.871 indicates that the model has good ability to distinguish between learners who complete the course and those who do not.
+
+The model performs better at identifying non-completers than completers. This is reflected in the higher recall for non-completers (87%) compared with completers (65%).
+
+### Challenges
+
+- Understanding the difference between a majority-class baseline and an actual machine-learning model.
+- Understanding why categorical variables need to be encoded before training.
+- Understanding precision, recall, F1-score, and ROC-AUC.
+- Ensuring that post-program variables were excluded to prevent data leakage.
+
+### Next Steps
+
+- Compare Logistic Regression with additional classification algorithms.
+- Evaluate whether other models can improve predictive performance.
+- Compare models using multiple evaluation metrics rather than accuracy alone.
