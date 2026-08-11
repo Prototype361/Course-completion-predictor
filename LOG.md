@@ -185,3 +185,71 @@ The model performs better at identifying non-completers than completers. This is
 - Compare Logistic Regression with additional classification algorithms.
 - Evaluate whether other models can improve predictive performance.
 - Compare models using multiple evaluation metrics rather than accuracy alone.
+
+
+## Day 5
+
+**Time Spent:** ~2 hours
+
+### Tasks Completed
+
+- Established the majority-class baseline at 62.75% accuracy.
+- Trained and evaluated a Decision Tree classifier.
+- Trained and evaluated a Random Forest classifier.
+- Compared both models with the existing Logistic Regression model.
+- Evaluated models using accuracy, precision, recall, F1-score, confusion matrix, and ROC-AUC.
+- Examined Logistic Regression coefficients to understand feature associations.
+- Identified `days_since_last_login_invalid` as a data-quality indicator rather than a meaningful learner feature and removed it from the model.
+- Retrained the Logistic Regression model using only meaningful learner features.
+
+### Model Comparison
+
+| Model | Accuracy | ROC-AUC |
+|---|---:|---:|
+| Majority baseline | 62.75% | — |
+| Decision Tree | 74.74% | 0.814 |
+| Random Forest | 77.87% | 0.863 |
+| Logistic Regression | 77.24% | 0.865 |
+
+### Observations
+
+All machine-learning models substantially outperformed the majority-class baseline.
+
+The Decision Tree performed weakest among the three machine-learning models.
+
+Random Forest achieved the highest accuracy at 77.87%, while Logistic Regression achieved the highest ROC-AUC at 0.865. The difference between the two models was small.
+
+Logistic Regression was retained as the preferred model because its predictive performance was competitive with Random Forest while remaining simpler and easier to interpret.
+
+### Feature Interpretation
+
+The strongest positive model coefficients were associated with:
+
+- `assignments_submitted`
+- `video_watch_pct`
+- `payment_plan_paid`
+- `weekly_logins_avg`
+
+The strongest negative coefficients were associated with:
+
+- `payment_plan_free`
+- `has_mentor_0.0`
+- `device_Mobile`
+- `referral_source_other`
+- `city_tier_3`
+- `days_since_last_login`
+
+These coefficients represent associations learned by the model and should not be interpreted as evidence of causation.
+
+### Data Quality Consideration
+
+The `days_since_last_login_invalid` indicator was initially included as a feature to preserve information about invalid source records. It improved the initial model slightly, but it represents a data-quality artifact rather than genuine learner behavior. It was therefore removed from the final model feature set.
+
+After removing this feature, Logistic Regression achieved 77.24% accuracy and 0.865 ROC-AUC.
+
+### Next Steps
+
+- Perform deeper error analysis on the preferred model.
+- Examine false positives and false negatives.
+- Investigate whether model performance is consistent across learner groups.
+- Consider feature engineering and model tuning only after completing error analysis.
