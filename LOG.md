@@ -327,3 +327,80 @@ The error analysis suggests that additional learner characteristics or better fe
 - Investigate prediction probabilities and classification thresholds.
 - Examine whether changing the decision threshold can improve the balance between false positives and false negatives.
 - Continue model evaluation before selecting a final production threshold.
+
+
+## Day 7
+
+**Time Spent:** ~2 hours
+
+### Tasks Completed
+
+- Analyzed the probability outputs of the final Logistic Regression model.
+- Evaluated multiple classification thresholds from 0.30 to 0.70.
+- Compared accuracy, precision, recall, and F1-score across different thresholds.
+- Compared the default threshold of 0.50 with alternative thresholds.
+- Selected 0.40 as the preferred classification threshold.
+- Evaluated the final model using the selected threshold.
+
+### Probability Analysis
+
+The Logistic Regression model produced predicted probabilities ranging from approximately 0.007 to 0.990.
+
+The average predicted probability was approximately 0.367, which was close to the actual course completion rate in the test set.
+
+### Threshold Comparison
+
+The default threshold of 0.50 produced:
+
+- Accuracy: 77.24%
+- Precision: 72.8%
+- Recall: 61.8%
+- F1-score: 0.669
+
+A threshold of 0.40 produced:
+
+- Accuracy: 78.71%
+- Precision: 69.39%
+- Recall: 76.40%
+- F1-score: 0.727
+
+The 0.40 threshold therefore improved accuracy, recall, and F1-score compared with the default 0.50 threshold, while slightly reducing precision.
+
+### Confusion Matrix
+
+At the selected threshold of 0.40:
+
+[[241, 60],
+ [42, 136]]
+
+This resulted in:
+
+- True negatives: 241
+- False positives: 60
+- False negatives: 42
+- True positives: 136
+
+Compared with the 0.50 threshold, false negatives decreased from 68 to 42. This means the model identified 26 additional learners who actually completed the course.
+
+### Final Threshold Decision
+
+A classification threshold of 0.40 was selected for the current model because it provided a better balance between identifying actual completers and maintaining overall prediction accuracy.
+
+The threshold was selected based on the current test-set evaluation and should be validated further before being used in a production environment.
+
+### Current Model Performance
+
+- Model: Logistic Regression
+- ROC-AUC: 0.865
+- Classification threshold: 0.40
+- Accuracy: 78.71%
+- Precision: 69.39%
+- Recall: 76.40%
+- F1-score: 0.727
+
+### Next Steps
+
+- Evaluate the final model across different learner groups.
+- Check whether the selected threshold generalizes beyond the current test split.
+- Consider whether additional validation or cross-validation is needed.
+- Document the final modeling pipeline and limitations.
