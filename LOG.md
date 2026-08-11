@@ -404,3 +404,46 @@ The threshold was selected based on the current test-set evaluation and should b
 - Check whether the selected threshold generalizes beyond the current test split.
 - Consider whether additional validation or cross-validation is needed.
 - Document the final modeling pipeline and limitations.
+
+
+## Day 8
+
+**Time Spent:** ~1 hour
+
+### Tasks Completed
+
+- Performed 5-fold cross-validation on the Logistic Regression model.
+- Evaluated ROC-AUC across all five folds.
+- Calculated the mean and standard deviation of cross-validation performance.
+
+### Cross-Validation Results
+
+ROC-AUC scores:
+
+- Fold 1: 0.820
+- Fold 2: 0.824
+- Fold 3: 0.851
+- Fold 4: 0.833
+- Fold 5: 0.811
+
+Mean ROC-AUC: 0.828
+
+Standard deviation: 0.013
+
+### Interpretation
+
+The relatively low standard deviation indicates that the model performs consistently across different training and validation splits.
+
+The cross-validation mean ROC-AUC of approximately 0.828 is lower than the 0.865 ROC-AUC obtained on the original test split. Therefore, the test-set result should not be treated as the expected performance on all future data.
+
+Overall, the cross-validation results provide reasonable evidence that the Logistic Regression model has useful predictive performance and is not completely dependent on one particular train-test split.
+
+### Decision
+
+Logistic Regression remains the preferred model because it provides a good balance of predictive performance, interpretability, and simplicity.
+
+### Next Steps
+
+- Finalize the project documentation.
+- Update the README with the methodology and results.
+- Review the notebook and project files for completeness.
