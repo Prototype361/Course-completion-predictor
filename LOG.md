@@ -253,3 +253,77 @@ After removing this feature, Logistic Regression achieved 77.24% accuracy and 0.
 - Examine false positives and false negatives.
 - Investigate whether model performance is consistent across learner groups.
 - Consider feature engineering and model tuning only after completing error analysis.
+
+
+## Day 6
+
+**Time Spent:** ~2 hours
+
+### Tasks Completed
+
+- Performed error analysis on the preferred Logistic Regression model.
+- Compared correct and incorrect predictions.
+- Separated false positives and false negatives.
+- Examined the characteristics of misclassified learners.
+- Compared numerical features between correctly and incorrectly classified learners.
+- Analyzed model error rates across education, city tier, mentor status, device, referral source, and payment plan groups.
+- Checked group sizes before interpreting categorical error rates.
+
+### Error Summary
+
+The test set contained 479 learners.
+
+- Correct predictions: 370
+- Incorrect predictions: 109
+- False positives: 41
+- False negatives: 68
+
+False negatives were more common than false positives. This means the model more frequently predicted non-completion for learners who actually completed the course.
+
+### Numerical Error Analysis
+
+Compared with correctly classified learners, incorrectly classified learners had higher average values for several engagement-related features:
+
+- Video watch percentage was approximately 6.4 percentage points higher.
+- Assignments submitted were approximately 0.94 higher.
+- Hours per week pledged were approximately 0.75 higher.
+- Weekly logins were approximately 0.44 higher.
+
+This suggests that some learners with relatively strong engagement signals are difficult for the model to classify correctly. Some learners appear engaged but ultimately do not complete, while some moderately engaged learners do complete.
+
+### Categorical Error Analysis
+
+Model error rates varied across several learner groups.
+
+Education error rates ranged from 15.6% for Diploma learners to 28.8% for High School learners. Bachelors learners had an error rate of 17.9%.
+
+City-tier error rates were 22.6% for Tier 1, 28.4% for Tier 2, and 10.5% for Tier 3.
+
+Device error rates were 18.2% for Desktop, 24.2% for Laptop, 21.3% for Mobile, and 34.2% for Tablet users.
+
+School-partner referrals had the lowest referral-source error rate at 17.9%, while the Other category had the highest at 27.3%.
+
+Free-plan learners had an error rate of 17.8%, compared with 27.1% for paid learners and 27.2% for scholarship learners.
+
+### Interpretation
+
+The model performs reasonably well overall but has difficulty with learners whose observed behavior does not clearly match the typical completion patterns learned during training.
+
+The relatively high error rates for some smaller groups, such as Unknown city tier and Unknown education, should be interpreted cautiously because of their small sample sizes.
+
+The Tablet group had a higher error rate than other device groups, but the group contained only 38 learners. This should therefore be treated as a pattern worth investigating rather than a definitive conclusion.
+
+The error analysis suggests that additional learner characteristics or better feature representation may be needed to explain some of the outcomes that the current model cannot predict correctly.
+
+### Challenges
+
+- Interpreting false positives and false negatives.
+- Distinguishing meaningful error patterns from patterns caused by small group sizes.
+- Avoiding causal interpretations of model associations.
+- Understanding why some highly engaged learners are still misclassified.
+
+### Next Steps
+
+- Investigate prediction probabilities and classification thresholds.
+- Examine whether changing the decision threshold can improve the balance between false positives and false negatives.
+- Continue model evaluation before selecting a final production threshold.
