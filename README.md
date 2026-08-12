@@ -29,7 +29,6 @@ Course-completion-predictor/
 ├── REPORT.md
 ├── LOG.md
 ├── AI_USAGE.md
-├── predictions.csv
 └── requirements.txt
 ```
 
